@@ -1,0 +1,50 @@
+[reward]
+win = 10.0
+loss = -10.0
+enemy_hit = 3.0
+ally_hit = -4.0
+invalid_action = -1.0
+beauty = 0.8
+extra_enemy = 0.3
+max_flex_bonus = 1.5
+
+[model]
+terrain_embedding_dim = 64
+entity_feature_dim = 7
+entity_embedding_dim = 64
+state_embedding_dim = 128
+token_embedding_dim = 64
+hidden_dim = 128
+max_equation_tokens = 16
+max_entities = 16
+constant_limit = 12.0
+
+[simulator]
+backend = "python"
+java_jar = "java-sim/build/graphwar-headless.jar"
+observation_width = 96
+observation_height = 56
+max_trajectory_points = 512
+
+[ppo]
+learning_rate = 0.0003
+discount = 0.99
+gae_lambda = 0.95
+clip_ratio = 0.2
+value_coefficient = 0.5
+entropy_coefficient = 0.01
+max_gradient_norm = 1.0
+update_epochs = 4
+batch_size = 64
+
+[training]
+seed = 42
+total_steps = 20000
+rollout_steps = 256
+checkpoint_interval = 5000
+evaluation_interval = 2500
+run_dir = "runs/default"
+
+[evaluation]
+seeds = [10001, 10002, 10003, 10004, 10005]
+output_path = "artifacts/evaluation.json"
