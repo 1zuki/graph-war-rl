@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graphwar-rl"
+version = "0.2.0"
+description = "Deterministic normal-mode Graphwar simulation and reinforcement learning."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "torch",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+]
+
+[project.scripts]
+graphwar-train = "graphwar_rl.training.train:main"
+graphwar-evaluate = "graphwar_rl.evaluation.evaluate:main"
+graphwar-baselines = "graphwar_rl.evaluation.baselines:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["graphwar_rl*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
